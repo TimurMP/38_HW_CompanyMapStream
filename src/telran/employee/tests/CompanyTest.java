@@ -1,21 +1,17 @@
 package telran.employee.tests;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Arrays;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import telran.employee.dao.Company;
-import telran.employee.dao.CompanyImpl;
-import telran.employee.dao.CompanyListImpl;
 import telran.employee.dao.CompanyMapImpl;
-import telran.employee.dao.CompanySetImpl;
 import telran.employee.model.Employee;
 import telran.employee.model.Manager;
 import telran.employee.model.SalesManager;
 import telran.employee.model.WageEmployee;
+
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class CompanyTest {
 	Company company;
@@ -98,7 +94,6 @@ class CompanyTest {
 	}
 
 	@Test
-	//Отсортировать actual, чтобы проходил тест
 	void findEmployeesHoursGreaterThan() {
 		Employee[] actual = company.findEmployeesHoursGreaterThan(100);
 		Arrays.sort(actual, (e1, e2) -> Integer.compare(e1.getId(), e2.getId()));

@@ -1,13 +1,13 @@
 package telran.employee.dao;
 
+import telran.employee.model.Employee;
+import telran.employee.model.SalesManager;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
-
-import telran.employee.model.Employee;
-import telran.employee.model.SalesManager;
 
 public class CompanyMapImpl implements Company {
 	Map<Integer, Employee> employees;
