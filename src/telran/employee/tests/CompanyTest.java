@@ -3,7 +3,7 @@ package telran.employee.tests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import telran.employee.dao.Company;
-import telran.employee.dao.CompanyMapImpl;
+import telran.employee.dao.CompanyStreamImpl;
 import telran.employee.model.Employee;
 import telran.employee.model.Manager;
 import telran.employee.model.SalesManager;
@@ -19,7 +19,7 @@ class CompanyTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		company = new CompanyMapImpl(5);
+		company = new CompanyStreamImpl(5);
 		firm = new Employee[4];
 		firm[0] = new Manager(1000, "John", "Smith", 182, 20_000, 20);
 		firm[1] = new WageEmployee(2000, "Mary", "Smith", 182, 40);
