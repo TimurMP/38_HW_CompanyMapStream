@@ -1,12 +1,11 @@
 package telran.employee.dao;
 
-import java.util.function.Predicate;
-
 import telran.employee.model.Employee;
 import telran.employee.model.SalesManager;
 
+import java.util.function.Predicate;
+
 public class CompanyImpl implements Company {
-	// Fields
 	Employee[] employees;
 	int size;
 
