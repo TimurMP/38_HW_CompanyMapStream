@@ -4,6 +4,7 @@ import telran.employee.model.Employee;
 import telran.employee.model.SalesManager;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -40,30 +41,31 @@ public class CompanyMapImpl implements Company {
 	// O(n)
 	@Override
 	public double totalSalary() {
-//		return employees.values().stream()
-//				.mapToDouble(x -> x.calcSalary())
-//				.reduce(0, (a ,b) -> a + b);
-		return employees.values().stream()
-				.map(x -> x.calcSalary())
-				.reduce(0d, (a ,b) -> a + b);
+		Collection<Employee> collection = employees.values();
+		double res = 0;
+		for (Employee employee : collection) {
+			res += employee.calcSalary();
+		}
+		return res;
 
 	}
 
 	@Override
 	public double totalSales() {
-
-		return employees.values().stream()
-				.filter(x -> x instanceof SalesManager)
-				.map(x -> ((SalesManager) x).getSalesValue())
-				.reduce(0d, (a, b) -> a + b);
-
+		Collection<Employee> collection = employees.values();
+		double res = 0;
+		for (Employee employee : collection) {
+			if (employee instanceof SalesManager) {
+				res += ((SalesManager) employee).getSalesValue();
+			}
+		}
+		return res;
 	}
 
 	@Override
 	public void printEmployees() {
-		employees.values().stream()
-				.forEach(System.out::println);
-
+		Collection<Employee> collection = employees.values();
+		collection.forEach(e -> System.out.println(e));
 	}
 
 	@Override
