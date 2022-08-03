@@ -109,4 +109,11 @@ class CompanyTest {
 		assertArrayEquals(expected, actual);
 	}
 
+	@Test
+	void myTests() {
+		company.printEmployees();
+	}
+
+
+
 }

@@ -63,8 +63,9 @@ public class CompanyMapImpl implements Company {
 
 	@Override
 	public void printEmployees() {
-		Collection<Employee> collection = employees.values();
-		collection.forEach(e -> System.out.println(e));
+		employees.values().stream()
+				.forEach(System.out::println);
+
 	}
 
 	@Override
