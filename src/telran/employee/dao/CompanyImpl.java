@@ -85,38 +85,22 @@ public class CompanyImpl implements Company {
 		}
 	}
 
-//	public Employee[] findEmployeesSalaryBetween(double min, double max) {
-//		int count = 0;
-//		for (int i = 0; i < size; i++) {
-//			if (min <= employees[i].calcSalary() && employees[i].calcSalary() < max) {
-//				count++;
-//			}
-//		}
-//		Employee[] emp = new Employee[count];
-//		for (int i = 0, j = 0; j < emp.length; i++) {
-//			if (min <= employees[i].calcSalary() && employees[i].calcSalary() < max) {
-//				emp[j++] = employees[i];
-//			}
-//		}
-//		return emp;
-//	}
 
-//	public Employee[] findEmployeesHoursGreaterThan(int hours) {
-//		int count = 0;
-//		for (int i = 0; i < size; i++) {
-//			if (employees[i].getHours() >= hours) {
-//				count++;
-//			}
-//		}
-//		Employee[] emp = new Employee[count];
-//		for (int i = 0, j = 0; j < emp.length; i++) {
-//			if (employees[i].getHours() >= hours) {
-//				emp[j++] = employees[i];
-//			}
-//		}
-//		return emp;
-//	}
 
+	public Employee[] findEmployeesSalaryBetween(double min, double max) {
+		Predicate<Employee> predicate = new Predicate<>() {
+
+			@Override
+			public boolean test(Employee t) {
+				return t.calcSalary() >= min && t.calcSalary() < max;
+			}
+		};
+		return findEmployeesByPredicate(predicate);
+	}
+
+	public Employee[] findEmployeesHoursGreaterThan(int hours) {
+		return findEmployeesByPredicate(e -> e.getHours() >= hours);
+	}
 	private Employee[] findEmployeesByPredicate(Predicate<Employee> predicate) {
 		int count = 0;
 		for (int i = 0; i < size; i++) {
@@ -133,22 +117,9 @@ public class CompanyImpl implements Company {
 		return emp;
 	}
 
-	public Employee[] findEmployeesHoursGreaterThan(int hours) {
-		return findEmployeesByPredicate(e -> e.getHours() >= hours);
-	}
 
-//	public Employee[] findEmployeesSalaryBetween(double min, double max) {
-//		return findEmployeesByPredicate(e -> min <= e.calcSalary() && e.calcSalary() < max);
-//	}
 
-	public Employee[] findEmployeesSalaryBetween(double min, double max) {
-		Predicate<Employee> predicate = new Predicate<>() {
 
-			@Override
-			public boolean test(Employee t) {
-				return t.calcSalary() >= min && t.calcSalary() < max;
-			}
-		};
-		return findEmployeesByPredicate(predicate);
-	}
+
+
 }
