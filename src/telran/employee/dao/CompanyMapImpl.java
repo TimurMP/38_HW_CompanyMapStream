@@ -4,7 +4,6 @@ import telran.employee.model.Employee;
 import telran.employee.model.SalesManager;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -41,24 +40,23 @@ public class CompanyMapImpl implements Company {
 	// O(n)
 	@Override
 	public double totalSalary() {
-		Collection<Employee> collection = employees.values();
-		double res = 0;
-		for (Employee employee : collection) {
-			res += employee.calcSalary();
-		}
-		return res;
+//		return employees.values().stream()
+//				.mapToDouble(x -> x.calcSalary())
+//				.reduce(0, (a ,b) -> a + b);
+		return employees.values().stream()
+				.map(x -> x.calcSalary())
+				.reduce(0d, (a ,b) -> a + b);
+
 	}
 
 	@Override
 	public double totalSales() {
-		Collection<Employee> collection = employees.values();
-		double res = 0;
-		for (Employee employee : collection) {
-			if (employee instanceof SalesManager) {
-				res += ((SalesManager) employee).getSalesValue();
-			}
-		}
-		return res;
+
+		return employees.values().stream()
+				.filter(x -> x instanceof SalesManager)
+				.map(x -> ((SalesManager) x).getSalesValue())
+				.reduce(0d, (a, b) -> a + b);
+
 	}
 
 	@Override
